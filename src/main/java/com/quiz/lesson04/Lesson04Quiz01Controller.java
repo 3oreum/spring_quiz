@@ -41,7 +41,7 @@ public class Lesson04Quiz01Controller {
 	// 가장 최근에 추가된 seller의 정보 가져오는 페이지
 	// http://localhost:8080/lesson04/quiz01/seller-info
 	@GetMapping("/seller-info")
-	public String addSeller(Model model) {
+	public String sellerInfo(Model model) {
 		Seller seller = sellerBO.getLatestSeller();
 		model.addAttribute("result", seller);
 		model.addAttribute("title", "판매자 정보");
@@ -49,4 +49,5 @@ public class Lesson04Quiz01Controller {
 		return "lesson04/sellerInfo";
 	}
 	
+
 }

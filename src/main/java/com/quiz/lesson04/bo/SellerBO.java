@@ -17,6 +17,7 @@ public class SellerBO {
 		sellerMapper.insertSeller(nickname, profileImageUrl, temperature);
 	}
 	
+	
 	// 가장 최근에 추가된 셀러 
 	public Seller getLatestSeller() {
 		return sellerMapper.selectLatestSeller();
