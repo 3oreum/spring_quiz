@@ -15,4 +15,7 @@ public interface SellerMapper {
 	
 	
 	public Seller selectLatestSeller();
+	
+	public Seller selectSellerById(int id);
+	
 }

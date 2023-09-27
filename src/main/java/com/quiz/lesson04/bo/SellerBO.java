@@ -12,14 +12,23 @@ public class SellerBO {
 	@Autowired
 	private SellerMapper sellerMapper;
 	
+	// input: 3개 파라미터
+	// output: X
 	// insert
 	public void addSeller(String nickname, String profileImageUrl, Double temperature) {
 		sellerMapper.insertSeller(nickname, profileImageUrl, temperature);
 	}
 	
-	
+	// input: X
+	// output: Seller(최신 가입자 1명)
 	// 가장 최근에 추가된 셀러 
 	public Seller getLatestSeller() {
 		return sellerMapper.selectLatestSeller();
+	}
+	
+	// input: id
+	// output: Seller
+	public Seller getSellerById(int id) {
+		return sellerMapper.selectSellerById(id);
 	}
 }

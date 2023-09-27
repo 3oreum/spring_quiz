@@ -13,9 +13,9 @@
 <body>
 	<div class="container">
 		<h1>${title}</h1>
-		<img alt="이미지" src="${result.profileImageUrl}">
+		<img alt="이미지" src="${result.profileImageUrl}" width="200">
 		<div class="display-4">${result.nickname}</div>
-		<h2 class="text-warning">${result.temperature}</h2>
+		<h3 class="text-warning">${result.temperature}</h3>
 	</div>
 </body>
 </html>

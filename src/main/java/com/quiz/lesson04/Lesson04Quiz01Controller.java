@@ -18,9 +18,10 @@ public class Lesson04Quiz01Controller {
 	@Autowired
 	private SellerBO sellerBO;
 
+	// 판매자 추가 화면
 	// 입력 form URL : http://localhost:8080/lesson04/quiz01/add-seller-view
 	@GetMapping("/add-seller-view")
-	public String quiz04() {
+	public String addSellerView() {
 		return "lesson04/addSeller";
 	}
 	
@@ -29,7 +30,7 @@ public class Lesson04Quiz01Controller {
 	@PostMapping("/add-seller")
 	public String addSeller(
 			@RequestParam("nickname") String nickname,
-			@RequestParam("profileImageUrl") String profileImageUrl,
+			@RequestParam(value="profileImageUrl", required=false) String profileImageUrl,
 			@RequestParam(value="temperature", required=false) Double temperature) {
 		
 		// DB insert
@@ -40,9 +41,19 @@ public class Lesson04Quiz01Controller {
 	
 	// 가장 최근에 추가된 seller의 정보 가져오는 페이지
 	// http://localhost:8080/lesson04/quiz01/seller-info
+	// http://localhost:8080/lesson04/quiz01/seller_info?id=1
 	@GetMapping("/seller-info")
-	public String sellerInfo(Model model) {
-		Seller seller = sellerBO.getLatestSeller();
+	public String sellerInfo(
+			Model model,
+			@RequestParam(value="id", required=false) Integer id) {
+		
+		Seller seller = null;
+		if (id == null) {
+			seller = sellerBO.getLatestSeller();
+		} else {
+			seller = sellerBO.getSellerById(id);
+		}
+		
 		model.addAttribute("result", seller);
 		model.addAttribute("title", "판매자 정보");
 		
