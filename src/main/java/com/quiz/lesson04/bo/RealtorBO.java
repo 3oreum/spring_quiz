@@ -12,10 +12,14 @@ public class RealtorBO {
 	@Autowired
 	private RealtorMapper realtorMapper;
 	
+	// input: Realtor 객체
+	// output: X
 	public void addRealtor(Realtor realtor) {
 		realtorMapper.insertRealtor(realtor);
 	}
 	
+	// input: realtor의 id
+	// output: Realtor 객체
 	public Realtor getRealtorById(int id) {
 		return realtorMapper.selectRealtorById(id);
 	}

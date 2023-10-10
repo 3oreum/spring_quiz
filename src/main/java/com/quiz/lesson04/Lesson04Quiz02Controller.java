@@ -18,15 +18,15 @@ public class Lesson04Quiz02Controller {
 	@Autowired
 	private RealtorBO realtorBO;
 	
-	// 입력 form URL : http://localhost:8080/lesson04/quiz02/add_realtor_view
-	@GetMapping("/add_realtor_view")
+	// 입력 form URL : http://localhost:8080/lesson04/quiz02/add-realtor-view
+	@GetMapping("/add-realtor-view")
 	public String addRealtorView() {
 	
 		return "lesson04/addRealtor";
 	}
 	
-	// http://localhost/lesson04/quiz02/add_realtor
-	@PostMapping("/add_realtor")
+	// http://localhost/lesson04/quiz02/add-realtor
+	@PostMapping("/add-realtor")
 	public String addRealtor(
 			Model model,
 			@ModelAttribute Realtor realtor) {
@@ -34,10 +34,11 @@ public class Lesson04Quiz02Controller {
 		// DB insert
 		realtorBO.addRealtor(realtor);
 		
-		// DB select
+		// 받아온 id로 select => Model에 담아서
 		Realtor latestRealtor = realtorBO.getRealtorById(realtor.getId());
 		model.addAttribute("realtor", latestRealtor);
 		
+		// Response => jsp
 		return "lesson04/afterAddRealtor";
 	}
 }
