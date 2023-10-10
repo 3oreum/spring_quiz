@@ -44,10 +44,10 @@
 				
 		<c:choose>
 			<c:when test="${member.point >= 5000}">
-				<td class="text-primary">${member.point}</td>
+				<td class="text-primary">${member.point}P</td>
 			</c:when>
 			<c:otherwise>
-				<td>${member.point}</td>
+				<td>${member.point}P</td>
 			</c:otherwise>
 		</c:choose>
 				
