@@ -1,4 +1,4 @@
-package com.quiz.lesson05;
+package com.quiz.lesson05.domain;
 
 public class Member {
 

@@ -14,6 +14,8 @@
 </head>
 <body>
 <div class="container">
+<img alt="이미지" src="/img/sunny.jpg">
+
 	<h1>회원 정보 리스트</h1>
 	
 	<table class="table text-center">
