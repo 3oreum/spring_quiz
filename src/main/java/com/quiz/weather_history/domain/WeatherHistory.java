@@ -1,11 +1,15 @@
-package com.quiz.lesson05.weather_history.domain;
+package com.quiz.weather_history.domain;
 
 import java.util.Date;
 
-public class WeatherHistory {
+import org.springframework.format.annotation.DateTimeFormat;
 
+public class WeatherHistory {
 	private int id;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date date;
+	
 	private String weather;
 	private double temperatures;
 	private double precipitation;

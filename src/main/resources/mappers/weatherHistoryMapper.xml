@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="com.quiz.lesson05.weather_history.mapper.WeatherHistoryMapper">
- 	<select id="selectWeatherHistory" parameterType="int" resultType="com.quiz.lesson05.weather_history.domain.WeatherHistory">
+ <mapper namespace="com.quiz.weather_history.mapper.WeatherHistoryMapper">
+ 	<select id="selectWeatherHistoryList" resultType="com.quiz.weather_history.domain.WeatherHistory">
  		SELECT
  			`id`
 			,`date`
@@ -17,4 +17,29 @@
 		FROM
 			`weather_history`
  	</select>
+ 	
+ 	<insert id="insertWeatherHistory" parameterType="map">
+		INSERT INTO `weather_history`
+		(
+			`date`
+			,`weather`
+			,`temperatures`
+			,`precipitation`
+			,`microDust`
+			,`windSpeed`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			#{date}
+			, #{weather}
+			, #{temperatures}
+			, #{precipitation}
+			, #{microDust}
+			, #{windSpeed}
+			, NOW()
+			, NOW()
+		) 	
+ 	</insert>
  </mapper>
