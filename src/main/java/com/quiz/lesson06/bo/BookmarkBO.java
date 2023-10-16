@@ -17,4 +17,8 @@ public class BookmarkBO {
 	public List<Bookmark> getBookmarkList(){
 		return bookmarkMapper.selectBookmarkList();
 	}
+	
+	public void addBookmark(String name, String url) {
+		bookmarkMapper.insertBookmark(name, url);
+	}
 }

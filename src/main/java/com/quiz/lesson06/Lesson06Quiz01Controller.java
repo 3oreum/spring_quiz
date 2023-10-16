@@ -42,6 +42,9 @@ public class Lesson06Quiz01Controller {
 			@RequestParam("name") String name,
 			@RequestParam("url") String url) {
 		
+		// db insert
+		bookmarkBO.addBookmark(name, url);
+		
 		return "성공";
 	}
 }

@@ -14,7 +14,7 @@
 
 </head>
 <body>
-	<div>
+	<div class="container">
 		<h1>즐겨 찾기 목록</h1>
 		
 		<table class="table">
@@ -30,7 +30,7 @@
 				<tr>
 					<td>${status.count}</td>
 					<td>${bookmark.name}</td>
-					<td></td>
+					<td>${bookmark.url}</td>
 				</tr>
 			</c:forEach>
 			</tbody>
