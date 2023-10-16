@@ -19,4 +19,5 @@ public class StoreBO {
 	public List<Store> getStoreList(){
 		return storeMapper.selectStoreList();
 	}
+	
 }
