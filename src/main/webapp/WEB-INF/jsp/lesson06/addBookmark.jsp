@@ -23,7 +23,10 @@
 		</div>
 		<div class="form-group">
 			<label for="url">주소</label>
-			<input type="text" id="url" class="form-control">
+			<div class="d-flex">	
+				<input type="text" id="url" class="form-control">
+				<input type="button" id="urlCheckBtn" class="btn btn-info ml-3" value="중복확인">
+			</div>
 		</div>
 		
 		<input type="button" id="joinBtn" class="btn btn-success w-100" value="추가">
@@ -48,8 +51,9 @@
 				return;
 			}
 			
-			if (!url.startsWith('http') || url.startsWith('https')){
-				alert("주소를 다시 입력하세요");
+			// 둘 다 아니어야 해서 또는은 안 됨
+			if (!url.startsWith('http://') && !url.startsWith('https://')){
+				alert("주소 형식이 잘못되었습니다");
 				return;
 			}
 		
@@ -65,19 +69,39 @@
 				, data:{"name":name, "url":url}
 			
 				// response
-				, success:function(data){
-					// 서버 처리 후 에러가 없을 때 발생 
-					if (data == "성공"){
+				, success:function(data){ // data: response 응답값(JSON String) => Dictory Object
+					// data는 JSON String => Object 변환된 형태로 사용할 수 있다
+					// jquery의 ajax 함수 기능
+					/* alert(data.code);
+					alert(data.result); */
+					
+					if (data.code == 200){ // data.result == "success" 이렇게 해도 됨
 						location.href = "/lesson06/quiz01/bookmark-list-view";
 					}
 				}
-				, error:function(request, status, error){
-					alert(request);
-					alert(status);
-					alert(error);
+				, error:function(request, status, error){ // 사용자가 볼 수 있기 때문에 저렇게 함
+					alert("추가에 실패했습니다. 관리자에게 문의해주세요.");
+					//alert(status);
+					//alert(error);
 				}
 			});
 			
+		});
+		
+		$("#urlCheckBtn").on('click', function(){
+			let url = $("#url").val().trim();
+			
+			$.ajax({
+				// request
+				type:"get"
+				, url:"/lesson06/quiz02/is-duplication"
+				, data:{"url":url}
+				
+				// response
+				, success:function(data){
+					// {"code":200, "is_duplication":true}
+				}
+			});
 		});
 	});
 </script>

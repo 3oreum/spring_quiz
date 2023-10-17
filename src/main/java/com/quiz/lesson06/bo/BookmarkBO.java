@@ -14,6 +14,7 @@ public class BookmarkBO {
 	@Autowired
 	private BookmarkMapper bookmarkMapper;
 	
+	// input: X   output: List<Bookmark>
 	public List<Bookmark> getBookmarkList(){
 		return bookmarkMapper.selectBookmarkList();
 	}
