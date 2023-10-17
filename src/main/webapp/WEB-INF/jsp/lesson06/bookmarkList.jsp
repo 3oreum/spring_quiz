@@ -26,9 +26,9 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${bookmarkList}" var="bookmark" varStatus="status">
+			<c:forEach items="${bookmarkList}" var="bookmark">
 				<tr>
-					<td>${status.count}</td>
+					<td>${bookmark.id}</td>
 					<td>${bookmark.name}</td>
 					<td><a href="${bookmark.url}">${bookmark.url}</a></td>
 				</tr>

@@ -30,4 +30,13 @@
  			, NOW()
  		)
  	</insert>
+ 	
+ 	<select id="existUserByUrl" parameterType="String" resultType="boolean">
+ 		SELECT
+			COUNT(*)
+		FROM
+			`bookmark`
+		WHERE
+			`url` = #{url}
+ 	</select>
  </mapper>

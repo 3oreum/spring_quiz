@@ -1,6 +1,7 @@
 package com.quiz.lesson06.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,6 @@ public interface BookmarkMapper {
 	public void insertBookmark(
 			@Param("name") String name, 
 			@Param("url") String url);
+	
+	public boolean existUserByUrl(String url);
 }

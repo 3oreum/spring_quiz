@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -66,5 +67,21 @@ public class Lesson06Controller {
 	
 	// ------ quiz02 ------
 	
+	// url 중복 확인
+	@ResponseBody
+	@RequestMapping("/lesson06/quiz02/is-duplication")
+	public Map<String, Object> isDuplication(
+			@RequestParam("url") String url){
+		
+		// DB 조회
+		boolean isDuplication = bookmarkBO.existUserByUrl(url);
+		
+		// 응답값
+		// {"code":200, "is_duplication":true}
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("is_duplication", isDuplication);
+		return result;
+	}
 	
 }

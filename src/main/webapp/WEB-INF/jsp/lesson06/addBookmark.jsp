@@ -27,6 +27,7 @@
 				<input type="text" id="url" class="form-control">
 				<input type="button" id="urlCheckBtn" class="btn btn-info ml-3" value="중복확인">
 			</div>
+			<small id="urlStatusArea"></small>
 		</div>
 		
 		<input type="button" id="joinBtn" class="btn btn-success w-100" value="추가">
@@ -37,6 +38,7 @@
 		
 		$('#joinBtn').on('click', function(){
 			//alert("추가");
+			
 			
 			// validation
 			let name = $("#name").val().trim();
@@ -86,9 +88,14 @@
 				}
 			});
 			
+			
 		});
 		
+		// quiz02
 		$("#urlCheckBtn").on('click', function(){
+			
+			$("#urlStatusArea").empty();
+			
 			let url = $("#url").val().trim();
 			
 			$.ajax({
@@ -99,7 +106,14 @@
 				
 				// response
 				, success:function(data){
-					// {"code":200, "is_duplication":true}
+					if (data.is_duplication){
+						$("#urlStatusArea").append('<span class="text-danger">중복된 url입니다.</span>');
+					} else {
+						$("#urlStatusArea").append('<span class="text-danger">저장 가능한 url입니다.</span>');
+					}
+				}
+				, error:function(request, status, error){
+					alert("중복확인에 실패했습니다.");
 				}
 			});
 		});

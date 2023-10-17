@@ -1,6 +1,7 @@
 package com.quiz.lesson06.bo;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,9 @@ public class BookmarkBO {
 	
 	public void addBookmark(String name, String url) {
 		bookmarkMapper.insertBookmark(name, url);
+	}
+	
+	public boolean existUserByUrl(String url){
+		return bookmarkMapper.existUserByUrl(url);
 	}
 }
