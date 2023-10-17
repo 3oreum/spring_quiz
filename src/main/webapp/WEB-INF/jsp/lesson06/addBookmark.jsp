@@ -48,7 +48,7 @@
 				return;
 			}
 			
-			if (!url.startsWith('http') || !url.startsWith('https')){
+			if (!url.startsWith('http') || url.startsWith('https')){
 				alert("주소를 다시 입력하세요");
 				return;
 			}
