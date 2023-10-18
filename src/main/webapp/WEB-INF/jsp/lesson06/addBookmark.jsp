@@ -88,6 +88,11 @@
 				}
 			});
 			
+			if ($("#urlStatusArea").children().length == 0){
+				alert("가입 가능");
+			} else {
+				alert("가입 불가");
+			}
 			
 		});
 		
