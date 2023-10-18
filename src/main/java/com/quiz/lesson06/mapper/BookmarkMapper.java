@@ -17,5 +17,8 @@ public interface BookmarkMapper {
 			@Param("name") String name, 
 			@Param("url") String url);
 	
-	public boolean existUserByUrl(String url);
+	public Bookmark selectBookmarkByUrl(String url);
+	
+	public void deleteBookmarkById(int id);
+	
 }
