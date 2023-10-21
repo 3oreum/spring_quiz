@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,13 +47,27 @@
 		        <c:forEach items="${bookingList}" var="list">
 		            <tr>
 		            	<td>${list.name}</td>
-		            	<td>${list.date}</td>
+		            	<td>
+		            		<fmt:formatDate value="${list.date}" pattern="yyyy년 M월 d일" />
+		            	</td>
 		            	<td>${list.day}</td>
 		            	<td>${list.headcount}</td>
 		            	<td>${list.phoneNumber}</td>
-		            	<td>${list.state}</td>
 		            	<td>
-		            	<button type="button" class="del-btn btn btn-danger" data-booking-id="${list.id}">삭제</button>
+		            		<c:choose>
+		            			<c:when test="${list.state eq '확정'}">
+		            				<span class="text-success">${list.state}</span>
+		            			</c:when>
+		            			<c:when test="${list.state eq '대기중'}">
+		            				<span class="text-info">${list.state}</span>
+		            			</c:when>
+		            			<c:when test="${list.state eq '취소'}">
+		            				<span calss="text-danger">${list.state}</span>
+		            			</c:when>
+		            		</c:choose>
+		            	</td>
+		            	<td>
+		            		<button type="button" class="del-btn btn btn-danger" data-booking-id="${list.id}">삭제</button>
 		            	</td>
 		            </tr>
 		         </c:forEach> 
@@ -81,12 +96,18 @@ $(document).ready(function(){
 		$.ajax({
 			// request
 			type:"DELETE"
-			, url:""
+			, url:"/booking/delete-booking"
 			, data:{"id":id}
 		
 			// response
-			, success:function(data){
-				
+			, success:function(data){ // JSON => dictionary
+				// {"code":200, "result":"success"}
+				if (data.result == "success"){
+					alert("삭제되었습니다.");
+					location.reload(true);
+				} else { // 로직 에러
+					alert("삭제에 실패했습니다.");
+				}
 			}
 			, error:function(request, status, error){
 				alert("삭제에 실패했습니다. 관리자에게 문의바랍니다.");

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quiz.booking.domain.Booking;
 import com.quiz.booking.mapper.BookingMapper;
@@ -14,7 +15,16 @@ public class BookingBO {
 	@Autowired
 	private BookingMapper bookingMapper;
 	
-	public List<Booking> getBooking(){
-		return bookingMapper.selectBooking();
+	public List<Booking> getBookingList(){
+		return bookingMapper.selectBookingList();
+	}
+	
+	// input:id     output:int
+	public void deleteBookingById(int id) {
+		bookingMapper.deleteBookingById(id);
+	}
+	
+	public void addBooking(String name, String date, int day, int headcount, String phoneNumber) {
+		bookingMapper.insertBooking(name, date, day, headcount, phoneNumber);
 	}
 }
