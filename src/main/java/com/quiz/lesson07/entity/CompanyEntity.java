@@ -38,10 +38,10 @@ public class CompanyEntity {
 	private int headcount;
 	
 	@UpdateTimestamp
-	@Column(name="createdAt")
+	@Column(name = "createdAt", updatable = false)
 	private ZonedDateTime createdAt;
 	
 	@UpdateTimestamp
-	@Column(name="updatedAt")
+	@Column(name = "updatedAt")
 	private ZonedDateTime updatedAt;
 }
