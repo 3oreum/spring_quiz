@@ -22,6 +22,7 @@ public class Lesson07Quiz01RestController {
 		String scale = "대기업";
 		int headcount = 3585; 
 		
+		// JSON
 		return companyBO.addCompany(name, business, scale, headcount);
 	}
 	
@@ -33,5 +34,18 @@ public class Lesson07Quiz01RestController {
 		int headcount = 6834;
 		
 		return companyBO.addCompany(name, business, scale, headcount);
+	}
+	
+	@GetMapping("/update")
+	public CompanyEntity update() {
+		// id: 9, 중소기업, 34명
+		return companyBO.updateCompanyScaleHeadcountById(9, "중소기업", 34);
+	}
+	
+	@GetMapping("/delete")
+	public String delete() {
+		// id:9
+		companyBO.deleteCompanyById(9);
+		return "수행 완료";
 	}
 }
