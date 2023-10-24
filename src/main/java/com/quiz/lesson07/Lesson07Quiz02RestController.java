@@ -51,7 +51,13 @@ public class Lesson07Quiz02RestController {
 	
 	@GetMapping("/6")
 	public List<RecruitEntity> getRecruit6(){
+		// 성남시 분당구가 지역인 연봉 7000 이상 8500 이하인 공고를 조회
+		return recruitRepository.findByRegionAndSalaryBetween("성남시 분당구", 7000, 8500);
+	}
+	
+	@GetMapping("/7")
+	public List<RecruitEntity> getRecruit7(){
 		// 마감일이 2026-04-10 이후이고 연봉이 8100 이상인 정규직 공고를 연봉 내림차순으로 조회하세요.
-		return recruitRepository.findByTypeDeadlineGreaterThanAndSalaryGreaterThanEqualDesc("2026-04-10", 8100, "정규직");
+		return recruitRepository.findByDeadlineAndSalaryGreaterThanEqualAndTypeOrderBySalaryDesc("2026-04-10", 8100, "정규직");
 	}
 }
